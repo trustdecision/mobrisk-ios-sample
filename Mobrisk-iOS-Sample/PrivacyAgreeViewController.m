@@ -2,7 +2,6 @@
 //  PrivacyAgreeViewController.m
 //  Mobrisk-iOS-Sample
 //
-//  Created by 隐姓埋名 on 2023/7/7.
 //
 
 #import "PrivacyAgreeViewController.h"

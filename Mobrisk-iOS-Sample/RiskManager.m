@@ -2,7 +2,6 @@
 //  RiskManager.m
 //  Mobrisk-iOS-Sample
 //
-//  Created by 隐姓埋名 on 2023/7/7.
 //
 
 #import "RiskManager.h"
@@ -39,7 +38,7 @@
     //App name, Refer to `Required Configuration`
     [options setValue:@"[Your appName]" forKey:@"appName"];
     //Country code, Refer to `Required Configuration`
-    [options setValue:@"cn" forKey:@"country"];
+    [options setValue:@"[Your country]" forKey:@"country"];
     
     /*************************** Optional Parameter ***************************/
 #ifdef DEBUG
