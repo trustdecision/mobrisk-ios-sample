@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dYB-1T-Hm7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dYB-1T-Hm7">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUX-jt-JPg">
-                                <rect key="frame" x="129" y="278" width="135" height="35"/>
+                                <rect key="frame" x="130" y="278" width="133" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Show Captcha"/>
+                                <buttonConfiguration key="configuration" style="plain" title="show Captcha"/>
                                 <connections>
                                     <action selector="showCaptchaClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="huW-G0-r4G"/>
                                 </connections>
@@ -88,6 +88,7 @@
         <!--Privacy Agree View Controller-->
         <scene sceneID="juK-h1-G0v">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FUV-kv-amk" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="PrivacyAgreeViewController" id="amp-r1-c1o" customClass="PrivacyAgreeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fYM-MB-WoO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -146,9 +147,8 @@
                         <outlet property="webView" destination="PSz-wP-dvx" id="0KJ-Ff-C4I"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FUV-kv-amk" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4370.2290076335876" y="17.605633802816904"/>
+            <point key="canvasLocation" x="4283" y="-27"/>
         </scene>
         <!--Trust Device-->
         <scene sceneID="ZTL-nE-Wly">

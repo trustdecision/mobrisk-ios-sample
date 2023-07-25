@@ -2,8 +2,6 @@
 //  PrivacyAgreeViewController.m
 //  Mobrisk-iOS-Sample
 //
-//  Created by 隐姓埋名 on 2023/7/7.
-//
 
 #import "PrivacyAgreeViewController.h"
 #import <WebKit/WebKit.h>
@@ -29,17 +27,17 @@
 
 #pragma mark - IB Event
 - (IBAction)acceptClick:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
     if (self.delegate && [self.delegate respondsToSelector:@selector(privacyAgreeViewController:result:)]) {
         [self.delegate privacyAgreeViewController:self result:YES];
     }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)refuseClick:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
     if (self.delegate && [self.delegate respondsToSelector:@selector(privacyAgreeViewController:result:)]) {
         [self.delegate privacyAgreeViewController:self result:NO];
     }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
