@@ -25,6 +25,11 @@
 
 #pragma mark - UI
 - (void)initUI {
+    // Set Navigation Title
+    RiskManager *manager = [RiskManager sharedManager];
+    NSString *sdkVersion = [manager getSDKVersion];
+    self.navigationItem.title = sdkVersion;
+    // Set UI
     self.outputTextView.layer.cornerRadius = 5;
     self.outputTextView.layer.borderColor = UIColor.grayColor.CGColor;
     self.outputTextView.layer.borderWidth = 0.5;
