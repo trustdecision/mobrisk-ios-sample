@@ -42,7 +42,7 @@
     self.outputTextView.text = [NSString stringWithFormat:@"sdkVersion: %@",sdkVersion];
 }
 
-- (IBAction)initWithOptionCallbackClick:(id)sender {
+- (IBAction)initWithOptionsClick:(id)sender {
     // You need to initialize the SDK for data collection after the user agrees to your company's privacy agreement
     BOOL isAgreeAgreement = [[NSUserDefaults standardUserDefaults] boolForKey:@"td_isAgreeAgreement"];
     if (!isAgreeAgreement) {
@@ -66,27 +66,38 @@
     }
 }
 
+- (IBAction)getBlackBoxAsyncClick:(id)sender {
+    // Get BlackBox Async
+    RiskManager *manager = [RiskManager sharedManager];
+    if (manager.isInitSDK) {
+        NSString *blackbox = manager.getBlackBox;
+        self.outputTextView.text =  [NSString stringWithFormat:@"blackBox: %@",blackbox];
+    }else {
+        self.outputTextView.text = [NSString stringWithFormat:@"❗️❗️❗️An exception will occur in the SDK, because you have not executed the initWithOptions function once after the application starts❗️❗️❗️"];
+    }
+}
+
 - (IBAction)showCaptchaClick:(id)sender {
     // Show captcha
     [self showTipsWithCallback:^{
         RiskManager *manager = [RiskManager sharedManager];
-        [manager showCaptcha:^(TongdunShowCaptchaResultStruct resultStruct) {
-            switch (resultStruct. resultType) {
-                case TongdunShowCaptchaResultTypeSuccess:
+        [manager showCaptcha:^(TDShowCaptchaResultStruct resultStruct) {
+            switch (resultStruct.resultType) {
+                case TDShowCaptchaResultTypeSuccess:
                 {
-                    NSString * validateToken = resultStruct.validateToken;
-                    self.outputTextView.text = [NSString stringWithFormat:@"🎉🎉🎉Obtain TrustDecision Captcha successfully!!!🎉🎉🎉\nValidateToken:%@",validateToken];
-                    NSLog(@"🎉🎉🎉Obtain TrustDecision Captcha successfully!!!🎉🎉🎉\nValidateToken:%@",validateToken);
+                    char *validateToken = resultStruct.validateToken;
+                    self.outputTextView.text = [NSString stringWithFormat:@"🎉🎉🎉Obtain TrustDecision Captcha successfully!!!🎉🎉🎉\nValidateToken:%s",validateToken];
+                    NSLog(@"🎉🎉🎉Obtain TrustDecision Captcha successfully!!!🎉🎉🎉\nValidateToken:%s",validateToken);
                 }
                     break;
-                case TongdunShowCaptchaResultTypeFailed:
+                case TDShowCaptchaResultTypeFailed:
                 {
-                    NSString * errorMsg = resultStruct. errorMsg;
-                    self.outputTextView.text = [NSString stringWithFormat:@"😫😫😫Get TrustDecision Captcha failed!!!😫😫😫\nErrorCode:%ld, errorMsg:%@",resultStruct.errorCode,errorMsg];
-                    NSLog(@"😫😫😫Get TrustDecision Captcha failed😫😫😫\nErrorCode:%ld, errorMsg:%@",resultStruct.errorCode,errorMsg);
+                    char *errorMsg = resultStruct. errorMsg;
+                    self.outputTextView.text = [NSString stringWithFormat:@"😫😫😫Get TrustDecision Captcha failed!!!😫😫😫\nErrorCode:%ld, errorMsg:%s",resultStruct.errorCode,errorMsg];
+                    NSLog(@"😫😫😫Get TrustDecision Captcha failed😫😫😫\nErrorCode:%ld, errorMsg:%s",resultStruct.errorCode,errorMsg);
                 }
                     break;
-                case TongdunShowCaptchaResultTypeReady:
+                case TDShowCaptchaResultTypeReady:
                     self.outputTextView.text = @"⌛️⌛️⌛️Captcha window popup is successful, waiting to be verified!!!⌛️⌛️⌛️";
                     NSLog(@"⌛️⌛️⌛️Captcha window popup is successful, waiting to be verified!!!⌛️⌛️⌛️");
                     break;
@@ -108,11 +119,7 @@
 - (void)initSDK {
     [self showTipsWithCallback:^{
         RiskManager *manager = [RiskManager sharedManager];
-        [manager initTrustDeviceSDK:^(NSString * _Nonnull blackbox) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.outputTextView.text = [NSString stringWithFormat:@"blackBox:%@",blackbox];
-            });
-        }];
+        [manager initTrustDeviceSDK];
         // set use's privacy agreement status
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"td_isAgreeAgreement"];
     }];

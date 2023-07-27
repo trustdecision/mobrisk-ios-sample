@@ -12,13 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// Get a manager
 + (instancetype)sharedManager;
 /// Init SDK
-- (void)initTrustDeviceSDK:(void (^)(NSString *blackbox))callback;
+- (void)initTrustDeviceSDK;
 /// Get blackBox
 - (NSString *)getBlackBox;
+/// Get blackBox Async callback
+- (void)getBlackBoxAsync:(void (^)(NSString *blackbox))callback;
 /// Get sdkVersion
 - (NSString *)getSDKVersion;
 /// Show captcha
-- (void)showCaptcha:(void (^)(TongdunShowCaptchaResultStruct resultStruct))callback;
+- (void)showCaptcha:(void (^)(TDShowCaptchaResultStruct resultStruct))callback;
 
 /// isInitSDK
 @property (atomic, assign) BOOL isInitSDK;

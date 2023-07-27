@@ -23,7 +23,7 @@
 }
 
 #pragma mark - TrustDevice SDK
-- (void)initTrustDeviceSDK:(void (^)(NSString *blackbox))callback {
+- (void)initTrustDeviceSDK {
     // Get riskManager
     TDMobRiskManager_t *riskManager = [TDMobRiskManager sharedManager];
     // Initialization Configuration
@@ -31,28 +31,19 @@
     
     /*************************** Mandatory Parameter ***************************/
     //Partner code, Refer to `Required Configuration`
-    [options setValue:@"[Your partner]" forKey:@"partner"];
+    [options setValue:@"tongdun" forKey:@"partner"];
     //App key, Refer to `Required Configuration`
-    [options setValue:@"[Your appKey]" forKey:@"appKey"];
+    [options setValue:@"0d2e7e22f9737acbac739056aa23c738" forKey:@"appKey"];
     //App name, Refer to `Required Configuration`
-    [options setValue:@"[Your appName]" forKey:@"appName"];
+    [options setValue:@"tongdun_ios" forKey:@"appName"];
     //Country code, Refer to `Required Configuration`
     [options setValue:@"cn" forKey:@"country"];
     
     /*************************** Optional Parameter ***************************/
 #ifdef DEBUG
     // !!! If not set this parameter in DEBUG mode, the app will terminate
-    [options setValue:@"allowed" forKey:@"allowed"];
+    [options setValue:@(YES) forKey:@"allowed"];
 #endif
-    [options setValue:^(NSString *blackbox) {
-        // The callback here is in the sub-thread
-        // Under normal network conditions, the results will be returned within 200-300ms.
-        // If the network is abnormal, it will return after the timeout timeLimit (default: 15s).
-        if (callback) {
-            callback(blackbox);
-        }
-    } forKey:@"callback"];
-    
     /*************************** Captcha Optional Parameter ***************************/
     // If you need to add captcha, please set the config
     NSDictionary *captchaOptions = [self getTrustDecisionSDKCaptchaOptions];
@@ -71,10 +62,21 @@
     return blackBox;
 }
 
-- (void)showCaptcha:(void (^)(TongdunShowCaptchaResultStruct resultStruct))callback {
+- (void)getBlackBoxAsync:(void (^)(NSString *blackbox))callback  {
+    TDMobRiskManager_t *riskManager = [TDMobRiskManager sharedManager];
+    if (_isInitSDK) {// Please confirm that you have executed the function initWithOptions once after the App starts, otherwise the SDK will be abnormal.
+        riskManager->getBlackBoxAsync(^(NSString *blackBox) {
+            if (callback) {
+                callback(blackBox);
+            }
+        });
+    }
+}
+
+- (void)showCaptcha:(void (^)(TDShowCaptchaResultStruct resultStruct))callback {
     UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
     TDMobRiskManager_t *riskManager = [TDMobRiskManager sharedManager];
-    riskManager->showCaptcha(keyWindow,^(TongdunShowCaptchaResultStruct resultStruct) {
+    riskManager->showCaptcha(keyWindow,^(TDShowCaptchaResultStruct resultStruct) {
         if (callback) {
             callback(resultStruct);
         }
