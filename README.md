@@ -28,9 +28,11 @@ There are several possibilities for the problem.
 If you confirm that the above problems do not exist, please contact us in the following two ways:
 
 + **Raise issue**
+
   Please describe the problem in issue and bring the wrong blackbox.
 
 + **Contact our technical support**
+
   Please contact our technical support, and describes your problem with wrong blackbox.
 
 **BlackBox Example:**
