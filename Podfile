@@ -8,7 +8,6 @@ target 'Mobrisk-iOS-Sample' do
   # Pods for Mobrisk-iOS-Sample
 
   pod 'TrustDecisionPro', '4.2.6.4'
-  pod 'TrustDecisionCaptcha', '2.1.8.4'
 
 end
 	
