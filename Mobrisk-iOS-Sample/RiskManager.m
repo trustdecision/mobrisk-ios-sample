@@ -31,13 +31,11 @@
     
     /*************************** Mandatory Parameter ***************************/
     //Partner code, Refer to `Required Configuration`
-    [options setValue:@"tongdun" forKey:@"partner"];
+    [options setValue:@"your partner" forKey:@"partner"];
     //App key, Refer to `Required Configuration`
-    [options setValue:@"0d2e7e22f9737acbac739056aa23c738" forKey:@"appKey"];
-    //App name, Refer to `Required Configuration`
-    [options setValue:@"tongdun_ios" forKey:@"appName"];
+    [options setValue:@"your appKey" forKey:@"appKey"];
     //Country code, Refer to `Required Configuration`
-    [options setValue:@"cn" forKey:@"country"];
+    [options setValue:@"your country" forKey:@"country"];
     
     /*************************** Optional Parameter ***************************/
 #ifdef DEBUG
